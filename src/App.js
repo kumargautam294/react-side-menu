@@ -1,54 +1,60 @@
-import './App.css';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Week1Component from './components/Week1';
-import Week2Component from './components/Week2';
-import Week3Component from './components/Week3';
-import Week4Component from './components/Week4';
-import Week5Component from './components/Week5';
-import Week6Component from './components/Week6';
-import Week7Component from './components/Week7';
-import Week8Component from './components/Week8';
-import Week9Component from './components/Week9';
-import Week10Component from './components/Week10';
-import { NavLink } from "react-router-dom";
+import './App.css'
+import React from 'react'
 
-function App() {
+const weeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const messages = [
+	'Past & Future',
+	'Product Mindset',
+	'Freezing Requirements',
+	'Design Drafts',
+	'Coding I',
+	'Coding II',
+	'Production Readiness',
+	'Finishing Touches',
+	'Refining Resume',
+	'Mocks',
+]
 
-  return (
-    <BrowserRouter>
-        <div className="brand">
-          <h1>Pesto Ninja Training</h1>
-        </div>
-      <div className="App">
-        <div className="sidebar">
-          <NavLink activeClassName="active" to="/" exact>Week 1</NavLink>
-          <NavLink activeClassName="active" to="/week2" exact>Week 2</NavLink>
-          <NavLink activeClassName="active" to="/week3" exact>Week 3</NavLink>
-          <NavLink activeClassName="active" to="/week4" exact>Week 4</NavLink>
-          <NavLink activeClassName="active" to="/week5" exact>Week 5</NavLink>
-          <NavLink activeClassName="active" to="/week6" exact>Week 6</NavLink>
-          <NavLink activeClassName="active" to="/week7" exact>Week 7</NavLink>
-          <NavLink activeClassName="active" to="/week8" exact>Week 8</NavLink>
-          <NavLink activeClassName="active" to="/week9" exact>Week 9</NavLink>
-          <NavLink activeClassName="active" to="/week10" exact>Week 10</NavLink>
-        </div>
-        <div className="content">
-          <Switch>
-            <Route exact path="/" component={Week1Component} />
-            <Route exact path="/week2" component={Week2Component} />
-            <Route exact path="/week3" component={Week3Component} />
-            <Route exact path="/week4" component={Week4Component} />
-            <Route exact path="/week5" component={Week5Component} />
-            <Route exact path="/week6" component={Week6Component} />
-            <Route exact path="/week7" component={Week7Component} />
-            <Route exact path="/week8" component={Week8Component} />
-            <Route exact path="/week9" component={Week9Component} />
-            <Route exact path="/week10" component={Week10Component} />
-          </Switch>
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+const App = () => {
+	const [msg, setMsg] = React.useState(messages[0])
+	function handleClick(e, w) {
+
+		setMsg(messages[w - 1])
+	}
+	return (
+		<>
+			<div className='brand'>
+				<h1>Pesto Ninja Training</h1>
+			</div>
+
+			<div className='App'>
+				<div className='sidebar'>
+					{weeks.map((w) => {
+						return (
+							<div
+								class='btn btn-success w-100 rounded-0 border'
+								onClick={(e) => handleClick(e, w)}
+							>
+								{`Week ${w}`}
+							</div>
+						)
+					})}
+				</div>
+				<div className='content'>
+					{' '}
+					<WeekComponent value={msg} />
+				</div>
+			</div>
+		</>
+	)
 }
 
-export default App;
+function WeekComponent(props) {
+	return (
+		<div>
+			<h1>{props.value}</h1>
+		</div>
+	)
+}
+
+export default App
