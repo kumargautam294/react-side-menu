@@ -60,14 +60,15 @@
   overflow: auto;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar .my_btn {
   display: block;
   color: black;
   padding: 16px;
   text-decoration: none;
 }
 
-.sidebar a.active {
+/* .sidebar a.active {
   background-color: #04aa6d;
   color: white;
   text-decoration: none;
@@ -77,7 +78,7 @@
   background-color: #ccc;
   color: #fff !important;
   text-decoration: none;
-}
+} */
 
 div.content {
   margin-left: 130px;
